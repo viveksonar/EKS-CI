@@ -1,0 +1,40 @@
+# This workflow will do a clean install of python and aws-cloudformation cfn-lint dependencies, test the cloudforamtion template and deploy the code if the test pass.
+# For more information see: https://github.com/aws-cloudformation/cfn-lint
+
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        python-version: [3.6]
+
+    runs-on: ${{ matrix.os }}
+
+    timeout-minutes: 10
+
+    env:
+      OS: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Cloud Formation Linter with Latest Version
+        uses: scottbrenner/cfn-lint-action@v2
+
+      - name: Print the Cloud Formation Linter Version & run Linter.
+        run: |
+          cfn-lint --version
+          cfn-lint -t ./aws-eks.yml
+
+      
