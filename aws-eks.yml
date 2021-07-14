@@ -121,10 +121,10 @@ Metadata:
         Parameters:
           - CalicoIntegration
       - Label:
-          default: Rafay Systems [APN software & internet partner];
+          default: Rafay Systems [APN software & internet partner]
         Parameters:
           - RafaySysIntegration
-          - RafaySysProject;
+          - RafaySysProject
           - RafaySysBootstrapBucket
           - RafaySysBootstrapKey
           - RafaySysApiKey
